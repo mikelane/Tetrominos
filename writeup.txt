@@ -1,0 +1,82 @@
+Michael Lane
+lane7@pdx.edu  
+CS542 - Advanced AI  
+Homework 1  
+
+For this homework, I utilized numpy arrays to create a lightning fast version
+of the tetrominos game. There are a few excellent features of numpy, such as
+the ability to broadcast and the ability to slide multi-dimensional arrays. I
+Was able to use a line or two of code to do what would take dozens of lines to
+do in a language like C++ or Java. What's more, numpy is implemented in C under
+the hood, so the performance is excellent.
+
+My solution was a recursive solution that was very much like the solution
+provided on the class website. However, I did make a few modifications to
+facilitate the use of numpy and scipy. One feature that was extremely useful
+was scipy's ndimage.label function. This function is designed to label
+contiguous non-zero regions of an image, which can be useful in applications
+like motion tracking in videos. I utilized this feature to label partitions on
+the playing board to disqualify a board that had partitions that were not
+divisible by 4. 
+
+Here are a few example inputs and outputs. First a test on a small board:
+
+```
+$ cat tests/small-test-pass.txt
+4 6
+ITT5LP
+
+$ time python3 tetrominos.py < tests/small-test-pass.txt  
+abbbcc  
+adbcce  
+adfffe  
+addfee  
+
+real	0m0.777s
+user	0m0.377s
+sys	0m0.199s
+```
+
+Next a test on a medium-sized board:
+
+```
+$ cat tests/medium-test-pass.txt
+6 8
+OOI22TTLLPPP
+
+$ time python3 tetrominos.py < tests/medium-test-pass.txt
+aabbcddd
+aabbcedf
+gghhceef
+igghceff
+ijjhklll
+iijjkkkl
+
+real	0m0.769s
+user	0m0.388s
+sys	0m0.186s
+```
+
+Finally, a test on a large board:
+```
+$ cat tests/large-test-pass2.txt
+10 10
+LPO5LTT5LIPIIOT5TTLTTPIPT
+
+$ time python3 tetrominos.py < tests/large-test-pass2.txt
+abccccdeef
+abbbdddeef
+aagghhhiff
+jggkkhliim
+jnkkllliom
+jnnppqrrom
+jnsppqqrom
+ttssuvqrow
+txsuuvvyww
+txxxuvyyyw
+
+real	0m1.781s
+user	0m1.425s
+sys	0m0.183s
+```
+
