@@ -151,3 +151,4 @@ Temporary Items
 .idea/
 
 !/tests/medium-test-pass.txt
+/hw1-lane.zip
