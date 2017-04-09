@@ -73,7 +73,6 @@ All submission materials must be placed in a ZIP file named "hw1-lastname.zip" a
 
 import sys
 from collections import Counter
-from datetime import datetime
 
 import numpy as np
 from typing import Union, List, Tuple
